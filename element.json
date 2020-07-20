@@ -1,0 +1,106 @@
+{
+    "$id": "https://raw.githubusercontent.com/ScottNotFound/element-json-schema/master/element.json",
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "type": "object",
+    "properties": {
+        "elements": {
+            "type": "array",
+            "description": "An array of elements.",
+            "items": {
+                "$ref": "#/definitions/element"
+            }
+        },
+        "references": {
+            "type": "array",
+            "description": "An array of references.",
+            "items": {
+                "$ref": "#/definitions/reference"
+            }
+        }
+    },
+    "definitions": {
+        "element": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "pattern": "^[A-Z][a-z]+$",
+                    "description": "The name of the element."
+                },
+                "symbol": {
+                    "type": "string",
+                    "pattern": "^[A-Z][a-z]?$",
+                    "description": "The chemical symbol of the element."
+                },
+                "number": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 118,
+                    "description": "The atomic number of the element."
+                },
+                "properties": {
+                    "type": "array",
+                    "description": "An array of ",
+                    "items": {
+                        "$ref": "#/definitions/property"
+                    },
+                    "additionalItems": false
+                }
+            },
+            "additionalProperties": {
+                "$ref": "#/definition/property"
+            },
+            "required": [
+                "name",
+                "symbol",
+                "number"
+            ]
+        },
+        "reference": {
+            "anyOf": [
+                {
+                    "properties": {
+                        "ris": {
+                            "type": "string",
+                            "description": "The reference in ris format. Entire text of file."
+                        }
+                    }
+                },
+                {
+                    "properties": {
+                        "bibtex": {
+                            "type": "string",
+                            "description": "The reference in bibtex format. Entire text of file."
+                        }
+                    }
+                }
+            ]
+        },
+        "property": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "The name of the property."
+                },
+                "units": {
+                    "type": "string",
+                    "description": "The units of the property."
+                },
+                "value": {
+                    "type": "number",
+                    "description": "Value of the property."
+                },
+                "reference": {
+                    "$ref": "#/definitions/reference"
+                }
+            },
+            "required": [
+                "name",
+                "units",
+                "value",
+                "reference"
+            ]
+        }
+    }
+}
