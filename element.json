@@ -59,6 +59,7 @@
         "reference": {
             "anyOf": [
                 {
+                    "type": "object",
                     "properties": {
                         "ris": {
                             "type": "string",
@@ -67,12 +68,25 @@
                     }
                 },
                 {
+                    "type": "object",
                     "properties": {
                         "bibtex": {
                             "type": "string",
                             "description": "The reference in bibtex format. Entire text of file."
                         }
                     }
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "doi": {
+                            "type": "string",
+                            "description": "DOI"
+                        }
+                    }
+                },
+                {
+                    "type": "string"
                 }
             ]
         },
@@ -93,6 +107,10 @@
                 },
                 "reference": {
                     "$ref": "#/definitions/reference"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description."
                 }
             },
             "required": [
